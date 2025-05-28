@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="min-h-screen flex items-center justify-center">
+    <div class="max-w-md w-full card p-8 fade-in">
+        <h2 class="text-3xl font-bold mb-6 text-center">Login to StudentSync</h2>
+        <form method="POST">
+            <div class="mb-5">
+                <label class="block mb-2 font-medium">Username</label>
+                <input type="text" name="username" class="w-full p-3 rounded-lg focus:outline-none" required>
+            </div>
+            <div class="mb-6">
+                <label class="block mb-2 font-medium">Password</label>
+                <input type="password" name="password" class="w-full p-3 rounded-lg focus:outline-none" required>
+            </div>
+            <button type="submit" class="w-full p-3 rounded-lg">Login</button>
+        </form>
+        <p class="mt-4 text-center text-gray-300">
+            Don't have an account? <a href="{{ url_for('signup') }}" class="text-cyan-400 hover:text-cyan-300">Sign Up</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

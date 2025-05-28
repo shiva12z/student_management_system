@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="fade-in">
+    <h2 class="text-4xl font-bold mb-6">Manage Attendance</h2>
+    <div class="card p-8 mb-8">
+        <h3 class="text-2xl font-semibold mb-4">Record Attendance</h3>
+        <form method="POST">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div>
+                    <label class="block mb-2 font-medium">Student</label>
+                    <select name="student_id" class="w-full p-3 rounded-lg focus:outline-none" required>
+                        {% for student in students %}
+                        <option value="{{ student.id }}">{{ student.name }} ({{ student.student_id }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label class="block mb-2 font-medium">Date</label>
+                    <input type="date" name="date" class="w-full p-3 rounded-lg focus:outline-none" required>
+                </div>
+                <div>
+                    <label class="block mb-2 font-medium">Status</label>
+                    <select name="status" class="w-full p-3 rounded-lg focus:outline-none" required>
+                        <option value="Present">Present</option>
+                        <option value="Absent">Absent</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="p-3 rounded-lg w-full md:w-auto">Record Attendance</button>
+        </form>
+    </div>
+    <div class="card p-8">
+        <h3 class="text-2xl font-semibold mb-4">Attendance Records</h3>
+        {% if attendances %}
+        <div class="overflow-x-auto">
+            <table class="min-w-full rounded-lg">
+                <thead>
+                    <tr class="bg-gradient text-white">
+                        <th class="p-4 text-left rounded-tl-lg">Student</th>
+                        <th class="p-4 text-left">Date</th>
+                        <th class="p-4 text-left rounded-tr-lg">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for attendance in attendances %}
+                    <tr>
+                        <td class="p-4">{{ attendance.student.name }} ({{ attendance.student.student_id }})</td>
+                        <td class="p-4">{{ attendance.date }}</td>
+                        <td class="p-4">
+                            <span class="px-2 py-1 rounded-full text-sm {% if attendance.status == 'Present' %}bg-green-500 text-white{% else %}bg-red-500 text-white{% endif %}">
+                                {{ attendance.status }}
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="text-gray-300">No attendance records found.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

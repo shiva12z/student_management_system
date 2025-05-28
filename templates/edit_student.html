@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="fade-in">
+    <h2 class="text-4xl font-bold mb-6">Edit Student</h2>
+    <div class="card p-8 max-w-lg mx-auto">
+        <h3 class="text-2xl font-semibold mb-4">Update Student Details</h3>
+        <form method="POST">
+            <div class="mb-5">
+                <label class="block mb-2 font-medium">Name</label>
+                <input type="text" name="name" value="{{ student.name }}" class="w-full p-3 rounded-lg focus:outline-none" required>
+            </div>
+            <div class="mb-5">
+                <label class="block mb-2 font-medium">Email</label>
+                <input type="email" name="email" value="{{ student.email }}" class="w-full p-3 rounded-lg focus:outline-none" required>
+            </div>
+            <div class="mb-6">
+                <label class="block mb-2 font-medium">Student ID</label>
+                <input type="text" name="student_id" value="{{ student.student_id }}" class="w-full p-3 rounded-lg focus:outline-none" required>
+            </div>
+            <div class="flex space-x-4">
+                <button type="submit" class="p-3 rounded-lg flex-1">Update</button>
+                <a href="{{ url_for('manage_students') }}" class="bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 p-3 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-500 transition btn flex-1 text-center">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
